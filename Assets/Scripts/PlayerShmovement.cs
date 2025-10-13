@@ -44,9 +44,9 @@ public class PlayerShmovement : MonoBehaviour
         //Also gives a small about of leeway with regards to jumps and stuff
         RaycastHit hit;
         grounded = Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f, Ground);
-        Debug.DrawRay(transform.position, Vector3.down * 1.1f , Color.red);
+        Debug.DrawRay(transform.position, Vector3.down * 1.1f, Color.red);
 
-        if(grounded)
+        if (grounded)
         {
             rb.linearDamping = groundDrag;
             Debug.Log("touching ground");
@@ -57,6 +57,7 @@ public class PlayerShmovement : MonoBehaviour
             Debug.Log("Not Touching");
         }
 
+        SpeedControl();
     }
 
     void FixedUpdate()
@@ -76,5 +77,16 @@ public class PlayerShmovement : MonoBehaviour
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+    }
+
+    private void SpeedControl()
+    {
+        Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+
+        if (flatVel.magnitude > moveSpeed)
+        {
+            Vector3 limitedVel = flatVel.normalized * moveSpeed;
+            rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
+        }
     }
 }
