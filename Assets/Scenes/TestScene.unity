@@ -647,7 +647,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   orientation: {fileID: 1595892824}
-  groundDrag: 1
+  groundDrag: 10
   playerHeight: 1
   Ground:
     serializedVersion: 2

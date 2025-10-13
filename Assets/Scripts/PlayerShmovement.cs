@@ -43,8 +43,8 @@ public class PlayerShmovement : MonoBehaviour
         //We might not ALWAYS be exactly lined up with the ground for this to trigger.
         //Also gives a small about of leeway with regards to jumps and stuff
         RaycastHit hit;
-        grounded = Physics.Raycast(transform.position, Vector3.down * 3f, out hit, Ground);
-        Debug.DrawRay(transform.position, Vector3.down * 3f, Color.red);
+        grounded = Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f, Ground);
+        Debug.DrawRay(transform.position, Vector3.down * 1.1f , Color.red);
 
         if(grounded)
         {
