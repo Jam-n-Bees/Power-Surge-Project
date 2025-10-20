@@ -38,10 +38,7 @@ public class PlayerShmovement : MonoBehaviour
 
         //We put this function in fixed update, because it's applying a physics force to an object.
         MovePlayer();
-
-
-		rb.useGravity = false;
-		if (useGravity) rb.AddForce(Physics.gravity * (rb.mass * rb.mass));
+        rb.AddForce(new Vector3(0, -4, 0) * 14, ForceMode.Acceleration);
 	}
 
 
@@ -66,7 +63,14 @@ public class PlayerShmovement : MonoBehaviour
 
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (grounded)
+            {
+                rb.AddForce(0, 1500, 0);
+            }
+             
+        }
 
 
 
