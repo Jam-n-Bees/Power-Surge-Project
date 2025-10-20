@@ -29,6 +29,25 @@ public class PlayerShmovement : MonoBehaviour
     #endregion
 
 
+
+
+	public bool useGravity = true;
+
+
+	void FixedUpdate() {
+
+        //We put this function in fixed update, because it's applying a physics force to an object.
+        MovePlayer();
+
+
+		rb.useGravity = false;
+		if (useGravity) rb.AddForce(Physics.gravity * (rb.mass * rb.mass));
+	}
+
+
+
+
+
     void Start()
     {
         //freezing rotation so it's not tumbling around nonstop
@@ -37,9 +56,23 @@ public class PlayerShmovement : MonoBehaviour
         rb.freezeRotation = true;
     }
 
-    
+
+
+
+
+
+
+
+
     void Update()
     {
+
+
+
+
+
+
+        
         PlayerInput();
         #region Long winded comment rambling
         //checking if we are touching the ground
@@ -81,11 +114,6 @@ public class PlayerShmovement : MonoBehaviour
         SpeedControl();
     }
 
-    void FixedUpdate()
-    {
-        //We put this function in fixed update, because it's applying a physics force to an object.
-        MovePlayer();
-    }
 
 
     void PlayerInput()

@@ -817,13 +817,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6094c66edfd0afc4b9a084ba4ac9091c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 12
+  moveSpeed: 20
   orientation: {fileID: 1595892824}
-  groundDrag: 3
+  groundDrag: 6
   playerHeight: 1
   Ground:
     serializedVersion: 2
     m_Bits: 64
+  rigidbody: {fileID: 0}
+  useGravity: 1
 --- !u!54 &1959592640
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -832,7 +834,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1959592632}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 3
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
