@@ -71,6 +71,11 @@ public class PlayerShmovement : MonoBehaviour
         {
             rb.linearDamping = groundDrag;
             Debug.Log("touching ground");
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Jump();
+            }
+            
         }
         else
         {
@@ -81,20 +86,20 @@ public class PlayerShmovement : MonoBehaviour
         SpeedControl();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         //We put this function in fixed update, because it's applying a physics force to an object.
         MovePlayer();
     }
 
 
-    void PlayerInput()
+    private void PlayerInput()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
     }
 
-    void MovePlayer()
+    private void MovePlayer()
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
@@ -109,5 +114,10 @@ public class PlayerShmovement : MonoBehaviour
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
             rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
         }
+    }
+
+    private void Jump()
+    {
+        rb.linearVelocity = rb.linearVelocity + new Vector3(0, 10, 0);
     }
 }
